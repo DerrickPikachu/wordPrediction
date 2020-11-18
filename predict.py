@@ -1,3 +1,5 @@
+import operator
+
 class DataSetFile:
     def __init__(self, dataPath):
         self.path = dataPath
@@ -9,11 +11,12 @@ class DataSetFile:
 
 class Solution:
     def __init__(self):
-        self.preWordMap = dict()
-        self.nextWordMap = dict()
+        self.preWordMap = {}
+        self.nextWordMap = {}
 
     def __getSortedWords(self, wordMap: dict):
-        return {k: v for k, v in sorted(wordMap.items(), key=lambda item: item[1], reverse=True)}
+        # return {k: v for k, v in sorted(wordMap.items(), key=lambda item: item[1], reverse=True)}
+        return {k: v for k, v in sorted(wordMap.items(), key=operator.itemgetter(1), reverse=True)}
 
     def __clarifyWord(self, data: str, index: int):
         return data[index] if 0 <= index < len(data) else '\n'
@@ -59,20 +62,23 @@ class Solution:
         return famousPreWords, famousNextWords
 
 
-path = input()
+# path = input()
 target = input()
 
-# dataFile = DataSetFile('Gossiping-QA-Dataset.txt')
-dataFile = DataSetFile(path)
+dataFile = DataSetFile('Gossiping-QA-Dataset.txt')
+# dataFile = DataSetFile(path)
 data = dataFile.buildDataSet()
 solution = Solution()
 preWords, nextWords = solution.findMostPossibleWord(data, target)
+
+print(preWords)
+print(nextWords)
 
 print('熱門前一個字:')
 
 i = 0
 for k, v in preWords.items():
-    if i > 10:
+    if i >= 10:
         break
     print("{}---{}".format(k, target))
     i += 1
@@ -81,7 +87,7 @@ print("熱門下一個字:")
 
 i = 0
 for k, v in nextWords.items():
-    if i > 10:
+    if i >= 10:
         break
     print("{}---{}".format(target, k))
     i += 1
