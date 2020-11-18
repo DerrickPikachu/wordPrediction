@@ -71,8 +71,8 @@ data = dataFile.buildDataSet()
 solution = Solution()
 preWords, nextWords = solution.findMostPossibleWord(data, target)
 
-print(preWords)
-print(nextWords)
+# print(preWords)
+# print(nextWords)
 
 print('熱門前一個字:')
 
