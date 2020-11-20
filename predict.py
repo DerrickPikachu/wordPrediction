@@ -62,11 +62,11 @@ class Solution:
         return famousPreWords, famousNextWords
 
 
-# path = input()
+path = input()
 target = input()
 
-dataFile = DataSetFile('Gossiping-QA-Dataset.txt')
-# dataFile = DataSetFile(path)
+# dataFile = DataSetFile('Gossiping-QA-Dataset.txt')
+dataFile = DataSetFile(path)
 data = dataFile.buildDataSet()
 solution = Solution()
 preWords, nextWords = solution.findMostPossibleWord(data, target)
